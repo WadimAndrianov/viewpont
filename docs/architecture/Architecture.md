@@ -60,7 +60,7 @@ ViewPoint представляет собой веб-приложение с к�
 
 ### 2. Структурная схема текущей реализации
 
-![Архитектура As is]([./is as](https://github.com/WadimAndrianov/viewpont/blob/main/docs/architecture/is%20as.png).png)
+![Архитектура As is](https://github.com/WadimAndrianov/viewpont/blob/main/docs/architecture/is%20as.png)
 
 ## Часть 3. Сравнение и рефакторинг
 
