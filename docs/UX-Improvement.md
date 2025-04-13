@@ -119,7 +119,7 @@
 
 - До
 
-![image](https://github.com/WadimAndrianov/viewpont/blob/main/docs/UX-Improvement-images/Профиль.%20До.PNG))
+![image](https://github.com/WadimAndrianov/viewpont/blob/main/docs/UX-Improvement-images/Профиль.%20До.PNG)
 
 - После
 
