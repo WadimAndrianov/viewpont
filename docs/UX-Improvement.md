@@ -127,7 +127,7 @@
 
 - До
 
-
+![image](https://github.com/WadimAndrianov/viewpont/blob/main/docs/UX-Improvement-images/Не%20видно%20что%20этот%20отзыв%20твой.%20До.PNG).
 
 - После
 
