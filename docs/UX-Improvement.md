@@ -122,7 +122,7 @@
 ![image](https://github.com/WadimAndrianov/viewpont/blob/main/docs/UX-Improvement-images/Профиль.%20До.PNG)
 
 - После
-
+![image](https://github.com/WadimAndrianov/viewpont/blob/main/docs/UX-Improvement-images/Профиль.%20После.PNG)
 ### 2. Доработка страницы с отзывами на продукт
 
 - До
