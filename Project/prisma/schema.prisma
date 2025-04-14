@@ -1,9 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
+//npx prisma studio
+//npx prisma migrate dev --name update_schema
+//npx prisma generate
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,5 +16,42 @@ model User {
   username  String   @unique
   password  String
   createdAt DateTime @default(now())
-  updateUt  DateTime @updatedAt
+  role      String   @default("user")
+
+  reviews Review[] // Один пользователь может оставить несколько отзывов
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  products Product[] // В категории может быть несколько продуктов
+}
+
+model Product {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+  imageUrl    String
+
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  reviews Review[] // Один продукт может иметь несколько отзывов
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  content   String
+  rating    Int      @default(10) // Рейтинг от 1 до 5
+  createdAt DateTime @default(now())
+
+  // Один пользователь может оставить только один отзыв на один продукт
+  userId    Int
+  productId Int
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId]) // Гарантирует, что один пользователь не оставит два отзыва на один продукт
 }

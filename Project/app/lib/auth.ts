@@ -2,7 +2,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "./db";
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs"; // Заменяем bcrypt на bcryptjs
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
@@ -44,6 +44,7 @@ export const authOptions: NextAuthOptions = {
           id: `${existingUser.id}`,
           name: existingUser.username,
           email: existingUser.email,
+          role: existingUser?.role,
         };
       },
     }),
@@ -55,5 +56,21 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login",
     signOut: "/",
     error: "/login",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role; // Добавляем role в JWT
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session?.user) {
+        session.user.role = token.role as string; // Передаём role в session
+        session.user.id = token.id as string; // Убедись, что id передаётся
+      }
+      return session;
+    },
   },
 };

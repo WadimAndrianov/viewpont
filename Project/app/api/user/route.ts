@@ -1,6 +1,6 @@
 import { db } from "@/app/lib/db";
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import * as z from "zod";
 import { sendEmail } from "@/app/lib/emailSend";
 
@@ -88,6 +88,17 @@ export async function PUT(req: Request) {
       return NextResponse.json(
         { message: "Пользователь с таким email не найден" },
         { status: 404 }
+      );
+    }
+
+    const userByName = await db.user.findUnique({
+      where: { username: newName },
+    });
+
+    if (userByName) {
+      return NextResponse.json(
+        { message: "Пользователь с таким именем уже существует" },
+        { status: 409 }
       );
     }
 

@@ -4,7 +4,7 @@ import { SentMessageInfo } from "nodemailer";
 
 // Настройка транспортер для отправки email через Outlook
 const transporter = nodemailer.createTransport({
-  service: "hotmail", // Используем Outlook (или Hotmail)
+  service: "Gmail",
   //host: "smtp.office365.com",
   //port: 587,
   //secure: false,
